@@ -1,0 +1,17 @@
+{
+  "title": "Shopping List",
+  "info": {
+    "date": "14/09/2022",
+    "time": "12:10:37"
+  },
+  "items": [
+    {
+      "name": "Beef Jerky",
+      "price": 2.25
+    },
+    {
+      "name": "Apricot",
+      "price": 0.3
+    }
+  ]
+}
