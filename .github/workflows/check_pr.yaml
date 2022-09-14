@@ -31,7 +31,7 @@ jobs:
         uses: JoseThen/comment-pr@v1.1.0
         with:
           comment: |
-            ## :prohibited: CHANGELOG.md was not Modified :prohibited:
+            ## :no_entry_sign: CHANGELOG.md was not Modified :no_entry_sign:
             We've noticed that your Pull Request did not modify the CHANGELOG.md
             Please add information about changes made in this PR into the CHANGELOG.md
             Note: This is a requirement
