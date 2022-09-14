@@ -1,0 +1,100 @@
+{
+  "title": {
+    "key": {
+      "start": [2, 2],
+      "end": [2, 9]
+    },
+    "value": {
+      "start": [2, 11],
+      "end": [2, 26]
+    }
+  },
+  "info": {
+    "key": {
+      "start": [3, 2],
+      "end": [3, 8]
+    },
+    "value": {
+      "start": [3, 10],
+      "end": [6, 3]
+    },
+    "properties": {
+      "date": {
+        "key": {
+          "start": [4, 4],
+          "end": [4, 10]
+        },
+        "value": {
+          "start": [4, 12],
+          "end": [4, 24]
+        }
+      },
+      "time": {
+        "key": {
+          "start": [5, 4],
+          "end": [5, 10]
+        },
+        "value": {
+          "start": [5, 12],
+          "end": [5, 22]
+        }
+      }
+    }
+  },
+  "items": {
+    "key": {
+      "start": [7, 2],
+      "end": [7, 9]
+    },
+    "value": {
+      "start": [7, 11],
+      "end": [16, 3]
+    },
+    "items": [
+      {
+        "name": {
+          "key": {
+            "start": [9, 6],
+            "end": [9, 12]
+          },
+          "value": {
+            "start": [9, 14],
+            "end": [9, 26]
+          }
+        },
+        "price": {
+          "key": {
+            "start": [10, 6],
+            "end": [10, 13]
+          },
+          "value": {
+            "start": [10, 15],
+            "end": [10, 19]
+          }
+        }
+      },
+      {
+        "name": {
+          "key": {
+            "start": [13, 6],
+            "end": [13, 12]
+          },
+          "value": {
+            "start": [13, 14],
+            "end": [13, 23]
+          }
+        },
+        "price": {
+          "key": {
+            "start": [14, 6],
+            "end": [14, 13]
+          },
+          "value": {
+            "start": [14, 15],
+            "end": [14, 18]
+          }
+        }
+      }
+    ]
+  }
+}
