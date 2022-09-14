@@ -1,0 +1,62 @@
+name: Check PR
+
+on:
+  pull_request:
+    branches-ignore:
+      - main
+
+jobs:
+  check-files:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Get Changed Files
+        id: files
+        uses: jitterbit/get-changed-files@v1
+      - name: Check if Files were Modified
+        id: modified
+        run: |
+          echo "::set-output name=CHANGELOGMODIFIED::FALSE"
+          echo "::set-output name=READMEMODIFIED::FALSE"
+          for changed_file in ${{ steps.files.outputs.all }}; do
+            if [[ ${changed_file} = "CHANGELOG.md" ]];
+            then
+              echo "::set-output name=CHANGELOGMODIFIED::TRUE"; # CHANGELOG.md was modified
+            elif [[ ${changed_file} = "README.md" ]];
+            then
+              echo "::set-output name=READMEMODIFIED::TRUE"; # README.md was modified
+            fi
+          done
+          exit 0
+      - name: Make CHANGELOG.md Comment
+        if: ${{ steps.modified.outputs.CHANGELOGMODIFIED == 'FALSE' }}
+        uses: JoseThen/comment-pr@v1.1.0
+        with:
+          comment: |
+            ## :prohibited: CHANGELOG.md was not Modified :prohibited:
+            We've noticed that your Pull Request did not modify the CHANGELOG.md
+            Please add information about changes made in this PR into the CHANGELOG.md
+            Note: This is a requirement
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Fail Job
+        if: ${{ steps.modified.outputs.CHANGELOGMODIFIED == 'FALSE' }}
+        run: exit 1
+      - name: Make README.md Comment
+        if: ${{ steps.modified.outputs.READMEMODIFIED == 'FALSE' }}
+        uses: JoseThen/comment-pr@v1.1.0
+        with:
+          comment: |
+            ## :warning: README.md was not Modified :warning:
+            We've noticed that your Pull Request did not modify the README.md
+            If core functionality has been changed or added, please add
+            information about this in the README.md. Otherwise, ignore this
+            Note: This is just a Warning, not an Error
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  run-eslint:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+      - run: npm ci
+      - run: npm run build
+      - run: npx eslint ./src --ext .ts
